@@ -2,7 +2,7 @@
 
 set -eux
 
-pip install hf-transfer
+pip install hf-transfer --break-system-packages
 
 export HF_HUB_ENABLE_HF_TRANSFER=1
 
