@@ -14,7 +14,7 @@ else
     echo "TRUST_REMOTE_CODE=${TRUST_REMOTE_CODE:-false}: running without --trust-remote-code"
 fi
 
-./convert_hf_to_gguf.py --outfile "${MODEL_NAME}-F16.gguf" --outtype auto --remote "${SRC_REPO}" "${CONVERT_ARGS[@]}" 
+python3 ./convert_hf_to_gguf.py --outfile "${MODEL_NAME}-F16.gguf" --outtype auto --remote "${SRC_REPO}" "${CONVERT_ARGS[@]}" 
 
 rm -rf "$HOME/.cache/huggingface"
 
