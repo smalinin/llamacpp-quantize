@@ -6,7 +6,15 @@ pip install hf-transfer --break-system-packages
 
 export HF_HUB_ENABLE_HF_TRANSFER=1
 
-./convert_hf_to_gguf.py --outfile "${MODEL_NAME}-F16.gguf" --outtype auto --remote "${SRC_REPO}"
+CONVERT_ARGS=()
+if [[ "${TRUST_REMOTE_CODE:-false}" == "true" ]]; then
+    echo "TRUST_REMOTE_CODE=true: passing --trust-remote-code to convert_hf_to_gguf.py"
+    CONVERT_ARGS+=(--trust-remote-code)
+else
+    echo "TRUST_REMOTE_CODE=${TRUST_REMOTE_CODE:-false}: running without --trust-remote-code"
+fi
+
+./convert_hf_to_gguf.py --outfile "${MODEL_NAME}-F16.gguf" --outtype auto --remote "${SRC_REPO}" "${CONVERT_ARGS[@]}" 
 
 rm -rf "$HOME/.cache/huggingface"
 
