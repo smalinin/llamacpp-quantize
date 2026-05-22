@@ -5,6 +5,7 @@ set -eux
 pip install hf-transfer --break-system-packages
 
 export HF_HUB_ENABLE_HF_TRANSFER=1
+export HF_XET_HIGH_PERFORMANCE=1
 
 CONVERT_ARGS=()
 if [[ "${TRUST_REMOTE_CODE:-false}" == "true" ]]; then
